@@ -1,0 +1,29 @@
+﻿@model KitapTuru
+
+<form method="post">
+
+    <div class="border p-3 mt-5">
+        <div class="row pb-3">
+            <h2 class="text-primary"> Book Event Add
+
+            </h2>
+
+            <hr />
+
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Title" class="p-0"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+
+        </div>
+
+        <button type="submit" class="btn btn-lg btn-primary" style="width:250px">Book Add</button>
+
+        <a asp-controller="BookEvent" asp-action="Index" class="btn btn-lg btn-primary" style="width:250px">Book Item Come back</a>
+
+    </div>
+</form>
+
+<h2>new book event add</h2>

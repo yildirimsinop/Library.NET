@@ -1,0 +1,61 @@
+﻿@model List<KitapTuru>
+@if (TempData["successful"] != null)
+{
+    <h2 style="color:red">@TempData["successful"]</h2>
+}
+
+ <div class="container">
+     <div class="row pt-3 pb-4">
+
+         <div>
+            <h1>Book Event Side</h1>
+         </div>
+        
+     </div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                
+            </th>
+                <th>
+                    
+                </th>
+        </tr>
+
+    </thead>
+    <tbody>
+
+        @foreach(var BookItem in Model)
+
+        {
+        <tr>
+            <td>@BookItem.Id</td>
+            <td>@BookItem.Title</td>
+            <td>
+             <a asp-controller="BookEvent" asp-action="Update" asp-route-id="@BookItem.Id" type="button" class="btn btn-success" style="width:250px"> Update </a>
+            </td>
+            <td>
+             <a asp-controller="BookEvent" asp-action="Delete" asp-route-id="@BookItem.Id" type="button" class="btn btn-danger" style="width:250px">Delete</a>
+             </td>
+        </tr>
+        }
+    </tbody>
+    
+</table>
+
+<div class="row pt-3 pb-2">
+    <div>
+            <a asp-controller="BookEvent" asp-action="Details" class="btn btn-lg btn-primary" type="button">
+            New Book Event 
+        </a>
+    </div>
+</div>
+
+</div>
