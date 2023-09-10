@@ -4,6 +4,10 @@ using WebApplication1.Models;
 using System.Linq;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
+using Microsoft.AspNetCore.Http;
+
 
 namespace WebApplication1.Controllers
 {
@@ -66,12 +70,18 @@ namespace WebApplication1.Controllers
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
                 string kitapPath = Path.Combine(wwwRootPath, @"img");
 
+
+                if (file != null)
+                {
+
+               
                 using (var fileStream = new FileStream(Path.Combine(kitapPath, file.FileName), FileMode.Create))
                 {
                     file.CopyTo(fileStream);
                 }
 
                 kitap.ResimUrl = @"\img\" +file.FileName;
+                }
 
                 if (kitap.Id == 0)
                 {

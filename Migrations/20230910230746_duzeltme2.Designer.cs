@@ -11,8 +11,8 @@ using WebApplication1.Utility;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(EventDbContext))]
-    [Migration("20230910213551_duzeltme")]
-    partial class duzeltme
+    [Migration("20230910230746_duzeltme2")]
+    partial class duzeltme2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
