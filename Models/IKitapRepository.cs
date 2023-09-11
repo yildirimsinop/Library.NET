@@ -1,8 +1,8 @@
 ﻿namespace WebApplication1.Models
 {
-    public interface IKitapRepository : IRepository<Kitap>
+    public interface IKiralamaRepository : IRepository<Kiralama>
     {
-        void Guncelle(Kitap kitap);
+        void Guncelle(Kiralama kiralama);
         void Kaydet();
 
     }

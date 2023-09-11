@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "BM4alHCG/wvbhE5rt8nBdrEhiOLQHdqkRJ1sRSg6z4E=",
+  "Hash": "MtQ6UvsvFUHPC+i9OzonKDgIr+GIXVMctY0GzCg2Ww4=",
   "Source": "WebApplication1",
   "BasePath": "_content/WebApplication1",
   "Mode": "Default",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Umit\\Desktop\\WebApplication1\\wwwroot\\img\\Bar Chart.png",
+      "SourceId": "WebApplication1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Umit\\Desktop\\WebApplication1\\wwwroot\\",
+      "BasePath": "_content/WebApplication1",
+      "RelativePath": "img/Bar Chart.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\Bar Chart.png"
     },
     {
       "Identity": "C:\\Users\\Umit\\Desktop\\WebApplication1\\wwwroot\\img\\bg.jpg.jpg",

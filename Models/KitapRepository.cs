@@ -2,34 +2,25 @@
 
 namespace WebApplication1.Models
 {
-    public class KitapRepository : Repository<Kitap>, IKitapRepository
+    public class KiralamaRepository : Repository<Kiralama>, IKiralamaRepository
     {
         private EventDbContext _dbContext;
-        public KitapRepository(EventDbContext dbContext) : base(dbContext)
+        public KiralamaRepository(EventDbContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public void Add(Kitap kitap)
+        public void Guncelle(Kiralama Kiralama)
         {
-            _dbContext.Add(kitap);
-        }
-
-        public void Sil(Kitap kitap)
-        {
-            _dbContext.Remove(kitap);
-        }
-
-        public void Guncelle(Kitap kitap)
-        {
-            _dbContext.Update(kitap);
+            _dbContext.Update(Kiralama);
         }
 
         public void Kaydet()
         {
             _dbContext.SaveChanges();
-        }
+        }   
 
+       
 
     }
 }
