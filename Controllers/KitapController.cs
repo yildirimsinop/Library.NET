@@ -26,7 +26,7 @@ namespace WebApplication1.Controllers
 
         public IActionResult Index()
         {
-            List<Kitap> objBooklist = _kitapRepository.GetAll().ToList();
+            List<Kitap> objBooklist = _kitapRepository.GetAll(includeProps:"KitapTuru").ToList();
             return View(objBooklist);
         }
 

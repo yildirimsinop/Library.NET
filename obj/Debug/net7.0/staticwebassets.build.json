@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "78WVmyEcjYxtsQtkA8pni2u/cWh78CwkSy9JrWM1OvE=",
+  "Hash": "BM4alHCG/wvbhE5rt8nBdrEhiOLQHdqkRJ1sRSg6z4E=",
   "Source": "WebApplication1",
   "BasePath": "_content/WebApplication1",
   "Mode": "Default",
@@ -117,6 +117,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\Bilde.png.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\Umit\\Desktop\\WebApplication1\\wwwroot\\img\\Screenshot_2023_07_23-1.png",
+      "SourceId": "WebApplication1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Umit\\Desktop\\WebApplication1\\wwwroot\\",
+      "BasePath": "_content/WebApplication1",
+      "RelativePath": "img/Screenshot_2023_07_23-1.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\Screenshot_2023_07_23-1.png"
     },
     {
       "Identity": "C:\\Users\\Umit\\Desktop\\WebApplication1\\wwwroot\\img\\WhatsApp Image 2022-09-23 at 13.15.55.jpeg",
