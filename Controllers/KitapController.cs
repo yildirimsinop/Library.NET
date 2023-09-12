@@ -11,36 +11,35 @@ using Microsoft.AspNetCore.Http;
 
 namespace WebApplication1.Controllers
 {
-    public class KiralamaController : Controller
+    public class KitapController : Controller
     {
-
-        private readonly IKiralamaRepository _kiralamaRepository;
         private readonly IKitapRepository _kitapRepository;
+        private readonly IKitapTuruRepository _kitapTuruRepository;
         public readonly IWebHostEnvironment _webHostEnvironment;
 
-        public KiralamaController(IKiralamaRepository kiralamaRepository, IKitapRepository kitapRepository, IWebHostEnvironment webHostEnvironment)
+        public KitapController(IKitapRepository kitapRepository, IKitapTuruRepository kitapTuruRepository, IWebHostEnvironment webHostEnvironment)
         {
-            _kiralamaRepository = kiralamaRepository;
             _kitapRepository = kitapRepository;
+            _kitapTuruRepository = kitapTuruRepository;
             _webHostEnvironment = webHostEnvironment;   
         }
 
         public IActionResult Index()
         {
-            List<Kiralama> objKiralamalist = _kiralamaRepository.GetAll(includeProps:"Kitap").ToList();
-            return View(objKiralamalist);
+            List<Kitap> objBooklist = _kitapRepository.GetAll(includeProps:"KitapTuru").ToList();
+            return View(objBooklist);
         }
 
         public IActionResult EkleGuncelle(int? id)
         {
-            IEnumerable<SelectListItem> KitapList = _kitapRepository.GetAll()
+            IEnumerable<SelectListItem> KitapTuruList = _kitapTuruRepository.GetAll()
                 .Select(k => new SelectListItem
                 {
-                    Text = k.KitapAdi,
+                    Text = k.Title,
                     Value = k.Id.ToString()
                 }
                 );
-            ViewBag.KitapTuruList = KitapList;
+            ViewBag.KitapTuruList = KitapTuruList;
 
             if (id == null || id == 0)
             {
@@ -49,42 +48,89 @@ namespace WebApplication1.Controllers
 
             else
             {
-                Kiralama? kiralamaVt = _kiralamaRepository.Get(u => u.Id == id);
+                Kitap? bookeventVt = _kitapRepository.Get(u => u.Id == id);
 
-                if (kiralamaVt == null)
+                if (bookeventVt == null)
                 {
                     return NotFound();
                 }
 
-                return View(kiralamaVt);
+                return View(bookeventVt);
             }
             
         }
 
         [HttpPost]
-        public IActionResult EkleGuncelle(Kiralama kiralama)
+        public IActionResult EkleGuncelle(Kitap kitap, IFormFile? file )
         {
-           
+           //  var errors = ModelState.Values.SelectMany(x => x.Errors);
+
             if (ModelState.IsValid)
             {
-                
-                if (kiralama.Id == 0)
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                string kitapPath = Path.Combine(wwwRootPath, @"img");
+
+
+                if (file != null)
                 {
-                    _kiralamaRepository.Ekle(kiralama);
-                    TempData["basarili"] = "Yeni Kiralama kaydi basariyla olusturuldu!";
+
+               
+                using (var fileStream = new FileStream(Path.Combine(kitapPath, file.FileName), FileMode.Create))
+                {
+                    file.CopyTo(fileStream);
+                }
+
+                kitap.ResimUrl = @"\img\" +file.FileName;
+                }
+
+                if (kitap.Id == 0)
+                {
+                    _kitapRepository.Ekle(kitap);
+                    TempData["successful"] = "Yeni Kitap basariyla olusturuldu!";
                 }
                 else
                 {
-                    _kiralamaRepository.Guncelle(kiralama);
-                    TempData["basarili"] = "Kiralama kayit guncelleme basarili!";
+                    _kitapRepository.Guncelle(kitap);
+                    TempData["successful"] = "Kitap guncelleme basarili!";
                 }
 
-                _kiralamaRepository.Kaydet();
-                return RedirectToAction("Index", "Kiralama");
+                _kitapRepository.Kaydet();
+                return RedirectToAction("Index", "Kitap");
             }
             return View();
         }
-        
+        /*
+        public IActionResult Guncelle(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            Kitap? bookeventVt = _kitapRepository.Get(u => u.Id == id);
+
+            if (bookeventVt == null)
+            {
+                return NotFound();
+            }
+
+            return View(bookeventVt);
+        }
+       
+
+        [HttpPost]
+        public IActionResult Guncelle(Kitap bookitems)
+        {
+            if (ModelState.IsValid)
+            {
+                _kitapRepository.Guncelle(bookitems);
+                _kitapRepository.Kaydet();
+                TempData["successful"] = "Book creation updated";
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+        */
         public IActionResult Sil(int? id)
         {
             if (id == null || id == 0)
@@ -92,29 +138,29 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
 
-            Kiralama? kiralamaVt = _kiralamaRepository.Get(u => u.Id == id);
+            Kitap? bookeventVt = _kitapRepository.Get(u => u.Id == id);
 
-            if (kiralamaVt == null)
+            if (bookeventVt == null)
             {
                 return NotFound();
             }
 
-            return View(kiralamaVt);
+            return View(bookeventVt);
         }
 
         [HttpPost, ActionName("Sil")]
         public IActionResult SilPost(int? id)
         {
-            Kiralama? kiralama = _kiralamaRepository.Get(u => u.Id == id);
-            if (kiralama == null)
+            Kitap? bookItem = _kitapRepository.Get(u => u.Id == id);
+            if (bookItem == null)
             {
                 return NotFound();
             }
 
-            _kiralamaRepository.Sil(kiralama);
-            _kiralamaRepository.Kaydet();
-            TempData["basarili"] = "Kayit Silme islemi basarili";
-            return RedirectToAction("Index", "Kiralama");
+            _kitapRepository.Sil(bookItem);
+            _kitapRepository.Kaydet();
+            TempData["successful"] = "Book deletion successful";
+            return RedirectToAction("Index");
         }
     }
 }

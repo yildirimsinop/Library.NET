@@ -14,6 +14,7 @@ namespace WebApplication1.Models
 
         [ValidateNever]
         public int KitapId {  get; set; }
+
         [ForeignKey("KitapId")]
 
         [ValidateNever]
