@@ -31,6 +31,7 @@ namespace WebApplication1.Controllers
             return View(objKiralamalist);
         }
 
+        // GET
         public IActionResult EkleGuncelle(int? id)
         {
             IEnumerable<SelectListItem> KitapList = _kitapRepository.GetAll()
@@ -40,15 +41,18 @@ namespace WebApplication1.Controllers
                     Value = k.Id.ToString()
                 }
                 );
-            ViewBag.KitapTuruList = KitapList;
+            ViewBag.KitapList = KitapList;
 
             if (id == null || id == 0)
             {
+
+                // EKLE
                 return View();
             }
 
             else
             {
+                // GUNCELLEME
                 Kiralama? kiralamaVt = _kiralamaRepository.Get(u => u.Id == id);
 
                 if (kiralamaVt == null)
@@ -85,6 +89,7 @@ namespace WebApplication1.Controllers
             return View();
         }
         
+        // GET ACTION
         public IActionResult Sil(int? id)
         {
             if (id == null || id == 0)

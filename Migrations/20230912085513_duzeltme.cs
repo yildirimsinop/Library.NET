@@ -5,7 +5,7 @@
 namespace WebApplication1.Migrations
 {
     /// <inheritdoc />
-    public partial class duzeltme2 : Migration
+    public partial class duzeltme : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -47,6 +47,31 @@ namespace WebApplication1.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Kiralamalar",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OgrenciId = table.Column<int>(type: "int", nullable: false),
+                    KitapId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Kiralamalar", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Kiralamalar_Kitaplar_KitapId",
+                        column: x => x.KitapId,
+                        principalTable: "Kitaplar",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Kiralamalar_KitapId",
+                table: "Kiralamalar",
+                column: "KitapId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Kitaplar_KitapTuruId",
                 table: "Kitaplar",
@@ -56,6 +81,9 @@ namespace WebApplication1.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Kiralamalar");
+
             migrationBuilder.DropTable(
                 name: "Kitaplar");
 
